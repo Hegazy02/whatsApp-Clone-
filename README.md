@@ -1,1 +1,2 @@
 # whatsApp-Clone-
+## project notes
