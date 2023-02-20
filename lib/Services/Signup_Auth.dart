@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsappp/Pages/Home_Page.dart';
 import '../Helpers/snackBar.dart';
+import '../Pages/SignUpPages/SetAvatar&Bio_Page.dart';
 import '../constants.dart';
 import 'Notifications.dart';
 
@@ -15,7 +16,7 @@ signUpfun(String email, password, phone, username, BuildContext context) async {
   try {
     await register(email, password, phone, username);
     subscribeToTopic();
-    Navigator.of(context).pushReplacementNamed(homePage().id);
+    Navigator.of(context).pushReplacementNamed(Avatar_Bio().id);
     print("success");
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
@@ -48,6 +49,7 @@ Future<void> register(String email, password, phone, username) async {
     "uid": newuid,
     kChatedKey: username,
     kTokenKey: token,
+    'Avatar': "",
     'bio': "hey there!"
   });
 }

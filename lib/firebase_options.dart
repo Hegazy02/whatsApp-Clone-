@@ -53,10 +53,10 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCDsO2_MEcMz4X8JJhNYneHYT8NOpbViEc',
-    appId: '1:391935428504:android:5553ea0d9b2d0e83dc4ded',
-    messagingSenderId: '391935428504',
-    projectId: 'whatsappp-e13d5',
-    storageBucket: 'whatsappp-e13d5.appspot.com',
+    apiKey: 'AIzaSyBQcFJnmi4Ob8jsy2_Whx2lIIcwY-GXnJI',
+    appId: '1:481086183847:android:b0fd0582fbfbea489b7e82',
+    messagingSenderId: '481086183847',
+    projectId: 'whatsapp-clone-2d2c6',
+    storageBucket: 'whatsapp-clone-2d2c6.appspot.com',
   );
 }

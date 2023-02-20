@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:whatsappp/Pages/SignUpPages/SetAvatar&Bio_Page.dart';
 import 'firebase_options.dart';
 import 'package:whatsappp/Pages/SignIn_Page.dart';
-import 'package:whatsappp/Pages/SignUp_Page.dart';
+import 'package:whatsappp/Pages/SignUpPages/SignUp_Page.dart';
 import 'package:whatsappp/Pages/Home_Page.dart';
 import 'Pages/SomeoneChat_Page.dart';
 import 'package:whatsappp/Pages/Chat_Page.dart';
@@ -70,6 +71,7 @@ class _MyAppState extends State<MyApp> {
               someOneChatPage().id: (context) => someOneChatPage(),
               setting().id: (context) => setting(),
               prof().id: (context) => prof(),
+              Avatar_Bio().id: (context) => Avatar_Bio(),
             },
           );
         },

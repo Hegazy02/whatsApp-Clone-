@@ -7,7 +7,8 @@ import 'package:whatsappp/Components/customTextField.dart';
 // import 'package:chato/Components/phoneTextField.dart';
 import 'package:whatsappp/Pages/SignIn_Page.dart';
 import 'package:whatsappp/Services/Signup_Auth.dart';
-import '../constants.dart';
+
+import '../../constants.dart';
 
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 

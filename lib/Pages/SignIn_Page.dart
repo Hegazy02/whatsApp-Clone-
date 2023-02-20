@@ -3,7 +3,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:whatsappp/Components/customTextField.dart';
 import 'package:whatsappp/Components/authImage.dart';
 import 'package:whatsappp/Components/bottom.dart';
-import 'package:whatsappp/Pages/SignUp_Page.dart';
+import 'package:whatsappp/Pages/SignUpPages/SignUp_Page.dart';
 import 'package:whatsappp/Services/SignIn_Auth.dart';
 import '../constants.dart';
 
