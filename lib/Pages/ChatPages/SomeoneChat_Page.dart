@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:whatsappp/Pages/Home_Page.dart';
 import 'package:whatsappp/Services/HomeSearchBar.dart';
 import 'package:whatsappp/Services/Notifications.dart';
 import 'package:whatsappp/Services/Send&RecieveMessagesPrivate.dart';
@@ -33,7 +32,7 @@ class _someOneChatPageState extends State<someOneChatPage> {
     print(mh);
     String m = mh[0];
     String h = mh[1];
-    String c = mh[2];
+    String c = "${m}_$h";
     print("*****mine*****");
     print(m);
     print("*****his*****");
@@ -91,22 +90,9 @@ class _someOneChatPageState extends State<someOneChatPage> {
             SizedBox(
               width: 10,
             ),
-            Text(his)
+            Text(h)
           ],
         ),
-        actions: [
-          // Form(
-          //   child: customTextField(
-          //     hintText: "Search",
-          //     icon: IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-          //     isSecured: false,
-          //     updateui: empty,
-          //     onchaged: (data) {
-          //       searchMessage = data;
-          //     },
-          //   ),
-          // )
-        ],
       ),
       body: Container(
         child: Column(

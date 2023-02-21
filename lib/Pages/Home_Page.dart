@@ -2,13 +2,13 @@ import 'package:whatsappp/Pages/ChatPages/Chat_Page.dart';
 import 'package:whatsappp/Pages/ChatPages/SomeoneChat_Page.dart';
 import 'package:whatsappp/Services/GetUsername.dart';
 import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:whatsappp/Services/StreamBldrHome.dart';
+import 'package:whatsappp/Services/Streams/Usercollecion.dart';
 import 'package:whatsappp/constants.dart';
 import '../Components/DropDown.dart';
 import '../Services/HomeSearchBar.dart';
-import '../Services/Send&RecieveMessagesPrivate.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
 var collectionUsers;
@@ -24,12 +24,9 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> {
+  @override
   String? hisUsername;
-
-  Stream<QuerySnapshot> chatStream = FirebaseFirestore.instance
-      .collection(kUsersCollection)
-      .where('uid', isEqualTo: newuid ?? homeUid)
-      .snapshots();
+  getUsercollecion usercol = getUsercollecion();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +42,7 @@ class _homePageState extends State<homePage> {
                   width: 10,
                 ),
                 Text(
-                  "Chato",
+                  "Clone",
                   style: TextStyle(fontSize: 18),
                 ),
               ],
@@ -65,11 +62,14 @@ class _homePageState extends State<homePage> {
                         suffixIcon: IconButton(
                             onPressed: () async {
                               hisUsername = Capitalize(hisUsername!);
+                              hisUsername = hisUsername!.replaceAll(" ", "");
                               HomeSearchBar search = HomeSearchBar(
                                   collection: kUsersCollection,
-                                  key: 'username',
-                                  value: hisUsername!.replaceAll(" ", ""));
+                                  key: kusername,
+                                  value: hisUsername);
                               his = await search.fetchInfo();
+                              mine = await getDataWithUid(
+                                  doc_id: newuid ?? homeUid, type: kusername);
 
                               if (his == 'Error') {
                                 AwesomeDialog(
@@ -84,20 +84,10 @@ class _homePageState extends State<homePage> {
                                   btnOkOnPress: () {},
                                 )..show();
                               } else {
-                                mine = await getDataWithUid(
-                                    doc_id: newuid ?? homeUid,
-                                    type: 'username');
-
-                                print("@@@@@@@@");
-                                print("mine: $mine");
-                                print("@@@@@@@@");
-                                print("his: $his");
-                                ///////////
                                 Navigator.of(context).pushNamed(
                                     someOneChatPage().id,
                                     arguments: "${mine}1${his}1");
                               }
-                              //////////////
                             },
                             icon: Icon(
                               Icons.search,
@@ -122,154 +112,14 @@ class _homePageState extends State<homePage> {
           ),
           body: TabBarView(
             children: [
-              Container(
-                  // color: Colors.red,
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(top: 5),
-                  child: Column(
-                    // mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: StreamBuilder(
-                          stream: chatStream,
-                          builder: (BuildContext context,
-                              AsyncSnapshot<QuerySnapshot> snapshot) {
-                            if (snapshot.hasError) {
-                              return Center(child: Text("chat has Error"));
-                            }
-                            if (snapshot.hasData) {
-                              ///////////////
-                              List a = snapshot.data!.docs
-                                  .map((DocumentSnapshot document) {
-                                Map<String, dynamic> data =
-                                    document.data()! as Map<String, dynamic>;
-                                return data[kChatedKey];
-                              }).toList();
-
-                              ////////////////
-                              print("aaaaaaaaaaaaaaaaaaaaa");
-                              print(a);
-                              List cc = a.join('').split('_');
-                              return ListView.builder(
-                                itemCount: cc.length,
-                                itemBuilder: (context, index) {
-                                  Stream lastMessageStream = FirebaseFirestore
-                                      .instance
-                                      .collection('${cc[index]}_${mine}')
-                                      .snapshots();
-
-                                  Stream<QuerySnapshot> imageCollection =
-                                      FirebaseFirestore.instance
-                                          .collection(kUsersCollection)
-                                          .snapshots();
-                                  print("cc[index]]]]]]]]]]]]]]]]]");
-                                  print(cc[index]);
-
-                                  return ListTile(
-                                    leading: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      child: StreamBuilder(
-                                        stream: imageCollection,
-                                        builder: (BuildContext context,
-                                            AsyncSnapshot<QuerySnapshot>
-                                                snapshot) {
-                                          if (snapshot.hasData) {
-                                            List myImagename = snapshot
-                                                .data!.docs
-                                                .map((DocumentSnapshot
-                                                    document) {
-                                              Map d = document.data()! as Map;
-                                              print("ddddddddddddddd");
-                                              print(d);
-                                              return d;
-                                            }).toList();
-
-                                            print("eeeeeeeeeeeeeeeee");
-                                            // print(myImagename);
-                                            myImagename.retainWhere((element) {
-                                              return element['username'] ==
-                                                  cc[index];
-                                            });
-                                            Map s = {"asd": "asd"};
-                                            myImagename.add(s);
-                                            print(myImagename);
-                                            print(cc[index]);
-
-                                            return myImagename[0]['Avatar'] ==
-                                                    null
-                                                ? CircleAvatar(
-                                                    radius: 73,
-                                                    backgroundImage:
-                                                        AssetImage(kLogo),
-                                                  )
-                                                : CircleAvatar(
-                                                    radius: 73,
-                                                    backgroundImage:
-                                                        NetworkImage(
-                                                            myImagename[0]
-                                                                ['Avatar']),
-                                                  );
-                                          } else {
-                                            return CircleAvatar(
-                                                // radius: 73,
-                                                // backgroundImage: AssetImage(kLogo),
-                                                );
-                                          }
-                                        },
-                                      ),
-                                    ),
-                                    title: Text(cc[index],
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold)),
-                                    // subtitle: StreamBuilder(stream: ,builder: (context, snapshot) {
-                                    //   return Text("data");
-                                    // },),
-                                    onTap: () async {
-                                      his = cc[index];
-
-                                      //////////////
-                                      mine = await getDataWithUid(
-                                          doc_id: uidp, type: 'username');
-                                      print("@@@@@@@@");
-                                      print("mine: $mine");
-                                      print("@@@@@@@@");
-                                      print("his: $his");
-                                      ///////////
-                                      collectionUsers = await getData(
-                                          collection: "${mine}_$his",
-                                          key: "collection",
-                                          val: "${mine}_$his");
-                                      Navigator.of(context).pushNamed(
-                                          someOneChatPage().id,
-                                          arguments:
-                                              "${mine}1${his}1${collectionUsers}");
-                                    },
-                                  );
-                                },
-                              );
-                            } else {
-                              return Center(
-                                  child: Image.asset(
-                                "assets/images/loading.gif",
-                                scale: 2.5,
-                              ));
-                            }
-                          },
-                        ),
-                      ),
-                      // Text("What's next ?",
-                      //     style: TextStyle(
-                      //         fontSize: 18,
-                      //         color: kSecondryColor,
-                      //         fontWeight: FontWeight.bold)),
-                      // Text("- Choose your avatar",
-                      //     style: TextStyle(fontSize: 14)),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  )),
+              Padding(
+                padding: EdgeInsets.only(top: 5),
+                child: Column(
+                  children: [
+                    Expanded(child: strmBHome()),
+                  ],
+                ),
+              ),
               Container(
                 child: Column(
                   children: [

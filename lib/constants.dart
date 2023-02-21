@@ -8,6 +8,7 @@ const kLogo = "assets/images/Logo.png";
 const kMessagesCollection = "messages";
 const kUsersCollection = "users";
 const kPrivateChats = "privateChats";
+const kusername = "username";
 const kChatedKey = "chatedWith";
 const kTokenKey = "DeviceToken";
 const List topics = ['message'];

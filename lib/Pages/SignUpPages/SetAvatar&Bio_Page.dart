@@ -5,7 +5,6 @@ import 'package:whatsappp/Pages/Home_Page.dart';
 import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 import 'package:whatsappp/Services/imagePicker.dart';
 import 'package:whatsappp/constants.dart';
-
 import '../../Components/bottom.dart';
 import '../../Helpers/bottomSheet.dart';
 import '../../Services/ChangeUsername.dart';
@@ -30,7 +29,6 @@ class _Avatar_BioState extends State<Avatar_Bio> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Align(
-      // alignment: Alignment.,
       child: Column(children: [
         Spacer(
           flex: 2,
