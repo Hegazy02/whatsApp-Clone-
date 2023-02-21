@@ -1,10 +1,10 @@
+import 'package:whatsappp/Pages/ChatPages/Chat_Page.dart';
+import 'package:whatsappp/Pages/ChatPages/SomeoneChat_Page.dart';
 import 'package:whatsappp/Services/GetUsername.dart';
-import 'package:whatsappp/Services/Signup_Auth.dart';
+import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsappp/Pages/Chat_Page.dart';
-import 'package:whatsappp/Pages/SomeoneChat_Page.dart';
 import 'package:whatsappp/constants.dart';
 import '../Components/DropDown.dart';
 import '../Services/HomeSearchBar.dart';

@@ -3,7 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:whatsappp/Pages/Home_Page.dart';
-import 'package:whatsappp/Services/Signup_Auth.dart';
+import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 import 'dart:io';
 import 'dart:math';
 

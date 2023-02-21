@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:whatsappp/Helpers/snackBar.dart';
 import 'package:whatsappp/Pages/Home_Page.dart';
-import '../Helpers/snackBar.dart';
-import '../Pages/SignUpPages/SetAvatar&Bio_Page.dart';
-import '../constants.dart';
-import 'Notifications.dart';
+import 'package:whatsappp/Pages/SignUpPages/SetAvatar&Bio_Page.dart';
+import 'package:whatsappp/Services/Notifications.dart';
+import 'package:whatsappp/constants.dart';
 
 String firebase = "https://console.firebase.google.com/u/0/";
 String AuthSite = "https://firebase.flutter.dev/docs/auth/usage/";

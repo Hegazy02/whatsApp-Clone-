@@ -1,10 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../Services/HomeSearchBar.dart';
-import '../Services/Notifications.dart';
-import '../Services/Send&RecieveMessagesPrivate.dart';
-import '../constants.dart';
-import 'Home_Page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:whatsappp/Pages/Home_Page.dart';
+import 'package:whatsappp/Services/HomeSearchBar.dart';
+import 'package:whatsappp/Services/Notifications.dart';
+import 'package:whatsappp/Services/Send&RecieveMessagesPrivate.dart';
+import 'package:whatsappp/constants.dart';
 
 var friendName;
 

@@ -3,9 +3,8 @@ import 'package:whatsappp/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsappp/main.dart';
-
 import '../Pages/Home_Page.dart';
-import '../Services/Signup_Auth.dart';
+import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 
 var value;
 var value2;

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:whatsappp/Pages/ChatPages/Chat_Page.dart';
+import 'package:whatsappp/Pages/ChatPages/SomeoneChat_Page.dart';
 import 'package:whatsappp/Pages/SignUpPages/SetAvatar&Bio_Page.dart';
 import 'firebase_options.dart';
 import 'package:whatsappp/Pages/SignIn_Page.dart';
 import 'package:whatsappp/Pages/SignUpPages/SignUp_Page.dart';
 import 'package:whatsappp/Pages/Home_Page.dart';
-import 'Pages/SomeoneChat_Page.dart';
-import 'package:whatsappp/Pages/Chat_Page.dart';
 import 'Pages/DropDownPages/ProfilePage.dart';
 import 'package:whatsappp/Pages/DropDownPages/settingPage.dart';
 import 'package:provider/provider.dart';

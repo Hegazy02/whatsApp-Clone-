@@ -4,7 +4,7 @@ import 'package:whatsappp/Components/customTextField.dart';
 import 'package:whatsappp/Components/authImage.dart';
 import 'package:whatsappp/Components/bottom.dart';
 import 'package:whatsappp/Pages/SignUpPages/SignUp_Page.dart';
-import 'package:whatsappp/Services/SignIn_Auth.dart';
+import 'package:whatsappp/Services/Auth/SignIn_Auth.dart';
 import '../constants.dart';
 
 empty() {}

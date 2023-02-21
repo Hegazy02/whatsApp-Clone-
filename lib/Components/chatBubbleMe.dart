@@ -1,12 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsappp/Services/Send&RecieveMessages.dart';
 import 'package:whatsappp/constants.dart';
 import 'package:intl/intl.dart';
-
 import '../Pages/Home_Page.dart';
-import '../Services/Signup_Auth.dart';
+import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 
 String uid = newuid == null ? homeUid : newuid;
 

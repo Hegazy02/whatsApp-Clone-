@@ -1,10 +1,10 @@
 import 'package:whatsappp/Pages/Home_Page.dart';
-import 'package:whatsappp/Services/Signup_Auth.dart';
+import 'package:whatsappp/Services/GetUsername.dart';
+import 'package:whatsappp/Services/Notifications.dart';
+import 'package:whatsappp/Services/Send&RecieveMessages.dart';
+import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsappp/constants.dart';
-import '../Services/GetUsername.dart';
-import '../Services/Notifications.dart';
-import '../Services/Send&RecieveMessages.dart';
 
 class ChatPage extends StatefulWidget {
   String id = "chatPAge";

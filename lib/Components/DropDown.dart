@@ -1,6 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:whatsappp/Pages/DropDownPages/ProfilePage.dart';
-import 'package:whatsappp/Services/Signup_Auth.dart';
+import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 import 'package:whatsappp/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:whatsappp/Helpers/snackBar.dart';
 import 'package:whatsappp/Pages/Home_Page.dart';
-import '../Helpers/snackBar.dart';
 import 'Signup_Auth.dart';
 
 signInfun(String email, password, BuildContext context) async {

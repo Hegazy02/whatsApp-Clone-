@@ -1,11 +1,11 @@
+import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 import 'package:whatsappp/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../Components/changeUsernameDialog.dart';
-import '../../Components/showMyUsername.dart';
+import '../../Components/GetMyUsername&Bio.dart';
 import '../../Helpers/bottomSheet.dart';
 import '../../Services/ChangeUsername.dart';
-import '../../Services/Signup_Auth.dart';
 import '../../main.dart';
 import '../Home_Page.dart';
 

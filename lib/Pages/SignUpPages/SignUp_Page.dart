@@ -6,7 +6,7 @@ import 'package:whatsappp/Components/bottom.dart';
 import 'package:whatsappp/Components/customTextField.dart';
 // import 'package:chato/Components/phoneTextField.dart';
 import 'package:whatsappp/Pages/SignIn_Page.dart';
-import 'package:whatsappp/Services/Signup_Auth.dart';
+import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 
 import '../../constants.dart';
 
