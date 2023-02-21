@@ -6,7 +6,6 @@ class DarkThemePreference {
   setDarkTheme(bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(dark, value);
-    print("dark : $value");
   }
 
   getDarkTheme() async {
@@ -30,8 +29,4 @@ class DarkThemeProvider extends ChangeNotifier {
   }
 
   bool get darkTheme => darkmood;
-
-  sss() async {
-    return await d.getDarkTheme();
-  }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 changeValueDialog(con, initialValue, text, Function(String)? onChanged,
     Function()? onPressed) {
-  String? newValue;
+
   showDialog(
       context: con,
       builder: (context) {

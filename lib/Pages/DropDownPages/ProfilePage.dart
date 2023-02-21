@@ -1,4 +1,6 @@
 import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
+import 'package:whatsappp/Services/Streams/StreamBldrs/StreamBldrImage.dart';
+import 'package:whatsappp/Services/Streams/Usercollecion.dart';
 import 'package:whatsappp/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -19,15 +21,7 @@ class prof extends StatefulWidget {
 
 class _profState extends State<prof> {
   var username;
-  Future<DocumentSnapshot<Map<String, dynamic>>> mydocname = FirebaseFirestore
-      .instance
-      .collection(kUsersCollection)
-      .doc(newuid ?? homeUid)
-      .get();
-  Stream<QuerySnapshot> uu = FirebaseFirestore.instance
-      .collection(kUsersCollection)
-      .where('uid', isEqualTo: newuid ?? homeUid)
-      .snapshots();
+  getUsercollecion usercol = getUsercollecion();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,37 +38,9 @@ class _profState extends State<prof> {
             ),
             Stack(
               children: [
-                StreamBuilder(
-                  stream: uu,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                    List myImagename = [];
-                    if (snapshot.hasData) {
-                      myImagename =
-                          snapshot.data!.docs.map((DocumentSnapshot document) {
-                        Map<String, dynamic> d =
-                            document.data()! as Map<String, dynamic>;
-                        print("ddddddddddddddd");
-                        print(d);
-                        return d['Avatar'];
-                      }).toList();
-                      return myImagename[0] == null
-                          ? CircleAvatar(
-                              radius: 73,
-                              backgroundImage: AssetImage(kLogo),
-                            )
-                          : CircleAvatar(
-                              radius: 73,
-                              backgroundImage:
-                                  NetworkImage("${myImagename[0]}"),
-                            );
-                    } else {
-                      return CircleAvatar(
-                          // radius: 73,
-                          // backgroundImage: AssetImage(kLogo),
-                          );
-                    }
-                  },
+                streamBImage(
+                  userstream: usercol.streamUId,
+                  name: null,
                 ),
                 Positioned(
                   bottom: 1,

@@ -33,7 +33,6 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    //بستقبل البيانات الي جايه من النافيجاتور الي كان رايح الصفحه دي
     return Scaffold(
       appBar: AppBar(
         //دي بتلغي السهم الي بيرجع لورا لو عامل بوش نايمد
@@ -66,7 +65,6 @@ class _ChatPageState extends State<ChatPage> {
                             color: kSecondryColor,
                           ),
                           onPressed: () async {
-                            String oneUid = newuid ?? homeUid;
                             setState(() {});
                             if (message != "") {
                               // chatList.add(message);
@@ -74,14 +72,10 @@ class _ChatPageState extends State<ChatPage> {
                               // controller
                               //     .jumpTo(controller.position.maxScrollExtent);
                               String? myusername = await getDataWithUid(
-                                  doc_id: oneUid, type: 'username');
-                              print("object0000000000");
-                              print("object0000000000");
-                              print(newuid);
-                              print(myusername);
-                              print(message);
+                                  doc_id: newuid ?? homeUid, type: kusername);
 
-                              addMessage(myusername!, message, oneUid);
+                              addMessage(
+                                  myusername!, message, newuid ?? homeUid);
                               sendnotify(myusername, message);
                               message = '';
                             }

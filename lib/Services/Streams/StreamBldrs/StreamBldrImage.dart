@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsappp/Pages/ChatPages/SomeoneChat_Page.dart';
 import 'package:whatsappp/Services/Streams/Usercollecion.dart';
 import 'package:whatsappp/constants.dart';
 
@@ -20,15 +19,14 @@ class streamBImage extends StatelessWidget {
 
             return d;
           }).toList();
+          if (name != null) {
+            userList.retainWhere((element) {
+              return element[kusername] == name;
+            });
+          }
 
-          userList.retainWhere((element) {
-            return element[kusername] == name;
-          });
           Map s = {"asd": "asd"};
           userList.add(s);
-          print("****************userImageData**********");
-          print(userList);
-          print(friendName);
 
           return userList[0]['Avatar'] == null
               ? CircleAvatar(
