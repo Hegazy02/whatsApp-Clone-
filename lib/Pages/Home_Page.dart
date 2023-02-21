@@ -4,7 +4,8 @@ import 'package:whatsappp/Services/GetUsername.dart';
 import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsappp/Services/StreamBldrHome.dart';
+import 'package:whatsappp/Services/Send&RecieveMessagesPrivate.dart';
+import 'package:whatsappp/Services/Streams/StreamBldrs/StreamBldrHome.dart';
 import 'package:whatsappp/Services/Streams/Usercollecion.dart';
 import 'package:whatsappp/constants.dart';
 import '../Components/DropDown.dart';
@@ -84,9 +85,15 @@ class _homePageState extends State<homePage> {
                                   btnOkOnPress: () {},
                                 )..show();
                               } else {
+                                collectionUsers = await getData(
+                                    collection: "${mine}_$his",
+                                    key: "collection",
+                                    val: "${mine}_$his");
+
                                 Navigator.of(context).pushNamed(
                                     someOneChatPage().id,
-                                    arguments: "${mine}1${his}1");
+                                    arguments:
+                                        "${mine}1${his}1${collectionUsers}");
                               }
                             },
                             icon: Icon(
@@ -142,4 +149,8 @@ class _homePageState extends State<homePage> {
           )),
     );
   }
+}
+
+mfun() async {
+  mine = await getDataWithUid(doc_id: newuid ?? homeUid, type: kusername);
 }

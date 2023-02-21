@@ -36,7 +36,7 @@ class strmBHome extends StatelessWidget {
 
               return ListTileHomeChats(
                 usercolstream: usercol.stream,
-                friendName: chatedList2[index],
+                fName: chatedList2[index],
               );
             },
           );

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:whatsappp/Pages/Home_Page.dart';
+import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 import 'package:whatsappp/Services/HomeSearchBar.dart';
 import 'package:whatsappp/Services/Notifications.dart';
 import 'package:whatsappp/Services/Send&RecieveMessagesPrivate.dart';
+import 'package:whatsappp/Services/Streams/StreamBldrs/StreamBldrImage.dart';
+import 'package:whatsappp/Services/Streams/Usercollecion.dart';
 import 'package:whatsappp/constants.dart';
 
 var friendName;
@@ -22,8 +25,7 @@ class _someOneChatPageState extends State<someOneChatPage> {
   String message = '';
 
   String? searchMessage;
-  Stream<QuerySnapshot> imageCollection =
-      FirebaseFirestore.instance.collection(kUsersCollection).snapshots();
+  getUsercollecion col = getUsercollecion();
 
   @override
   Widget build(BuildContext context) {
@@ -32,59 +34,17 @@ class _someOneChatPageState extends State<someOneChatPage> {
     print(mh);
     String m = mh[0];
     String h = mh[1];
-    String c = "${m}_$h";
-    print("*****mine*****");
-    print(m);
-    print("*****his*****");
-    print(h);
-    print("*****collection*****");
-    print(c);
+    String collec = mh[2];
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
           children: [
             CircleAvatar(
               backgroundColor: Colors.white,
-              child: StreamBuilder(
-                stream: imageCollection,
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (snapshot.hasData) {
-                    List myImagename =
-                        snapshot.data!.docs.map((DocumentSnapshot document) {
-                      Map d = document.data()! as Map;
-                      print("ddddddddddddddd");
-                      print(d);
-                      return d;
-                    }).toList();
-
-                    print("eeeeeeeeeeeeeeeee");
-                    // print(myImagename);
-                    myImagename.retainWhere((element) {
-                      return element['username'] == h;
-                    });
-                    Map s = {"asd": "asd"};
-                    myImagename.add(s);
-                    print(myImagename);
-                    print(h);
-
-                    return myImagename[0]['Avatar'] == null
-                        ? CircleAvatar(
-                            radius: 73,
-                            backgroundImage: AssetImage(kLogo),
-                          )
-                        : CircleAvatar(
-                            radius: 73,
-                            backgroundImage:
-                                NetworkImage(myImagename[0]['Avatar']),
-                          );
-                  } else {
-                    return CircleAvatar(
-                        // radius: 73,
-                        // backgroundImage: AssetImage(kLogo),
-                        );
-                  }
-                },
+              child: streamBImage(
+                userstream: col.stream,
+                name: h,
               ),
             ),
             SizedBox(
@@ -99,7 +59,7 @@ class _someOneChatPageState extends State<someOneChatPage> {
           children: [
             Expanded(
                 child: MessageBuilderp(
-              coll: c,
+              coll: collec,
               my_username: m,
               his_username: h,
             )),
@@ -127,7 +87,7 @@ class _someOneChatPageState extends State<someOneChatPage> {
                           onPressed: () async {
                             setState(() {});
                             print("*****uid******");
-                            print(uidp);
+                            print(newuid ?? homeUid);
                             print("*****uid******");
 
                             if (message != "") {
@@ -137,7 +97,8 @@ class _someOneChatPageState extends State<someOneChatPage> {
                               //     .jumpTo(controller.position.maxScrollExtent);
 
                               await addMessage(m, h, message);
-                              await ChatedWith(name: h, doc_id: uidp);
+                              await ChatedWith(
+                                  name: h, doc_id: newuid ?? homeUid);
 
                               var hisUid = await fetchuid(
                                   collection: kUsersCollection,
@@ -151,10 +112,7 @@ class _someOneChatPageState extends State<someOneChatPage> {
                                   key: 'username',
                                   value: h,
                                   returned: kTokenKey);
-                              print("000000000000000000000000");
-                              print(h);
-                              print(message);
-                              print(hisToken);
+
                               await sendPrivatenotify(m, message, hisToken);
                             }
                             // sendnotify(

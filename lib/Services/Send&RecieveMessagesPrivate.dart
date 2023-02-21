@@ -1,14 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:whatsappp/Pages/Home_Page.dart';
+import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 import 'package:whatsappp/Services/GetUsername.dart';
 import '../Components/chatBubbleMePrivate.dart';
 import '../constants.dart';
 import 'HomeSearchBar.dart';
 
 String firestoreSitep = "https://firebase.flutter.dev/docs/firestore/usage/";
-
-String uidp = FirebaseAuth.instance.currentUser!.uid;
 
 class MessageBuilderp extends StatelessWidget {
   Function? updatep;
@@ -126,7 +125,7 @@ Future<void> addMessage(String m, h, message) async {
         .add({
           'username': m,
           'message': message,
-          'uid': uidp,
+          'uid': newuid ?? homeUid,
           'date': DateTime.now(),
           'collection': "${m}_$h",
         })
@@ -138,7 +137,7 @@ Future<void> addMessage(String m, h, message) async {
     privateChats
         .add({
           'username': m,
-          'uid': uidp,
+          'uid': newuid ?? homeUid,
           'date': DateTime.now(),
           'collectionName': "${m}_$h",
         })
@@ -151,7 +150,7 @@ Future<void> addMessage(String m, h, message) async {
         .add({
           'username': m,
           'message': message,
-          'uid': uidp,
+          'uid': newuid ?? homeUid,
           'date': DateTime.now(),
           'collection': "${h}_$m",
         })
@@ -162,7 +161,7 @@ Future<void> addMessage(String m, h, message) async {
     privateChats
         .add({
           'username': m,
-          'uid': uidp,
+          'uid': newuid ?? homeUid,
           'date': DateTime.now(),
           'collectionName': "${h}_$m",
         })

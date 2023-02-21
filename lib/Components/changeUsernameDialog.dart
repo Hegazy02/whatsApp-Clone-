@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import '../Pages/Home_Page.dart';
-import '../Services/ChangeUsername.dart';
-import 'package:whatsappp/Services/Auth/Signup_Auth.dart';
 
 changeValueDialog(con, initialValue, text, Function(String)? onChanged,
     Function()? onPressed) {
